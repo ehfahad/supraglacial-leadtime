@@ -1,0 +1,45 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the paper below."
+title: "supraglacial-leadtime"
+abstract: "Per-class lead time for end-of-season supraglacial lake outcome classification on the Greenland Ice Sheet."
+authors:
+  - family-names: Hossain
+    given-names: Emam
+    affiliation: "University of Maryland, Baltimore County"
+    email: emamh1@umbc.edu
+  - family-names: Gani
+    given-names: "Md Osman"
+    affiliation: "University of Maryland, Baltimore County"
+    email: mogani@umbc.edu
+license: MIT
+repository-code: "https://github.com/hossainemam/supraglacial-leadtime"
+preferred-citation:
+  type: conference-paper
+  title: "Supraglacial Lake Fate Is Knowable Long Before the Season Ends"
+  authors:
+    - family-names: Hossain
+      given-names: Emam
+    - family-names: Gani
+      given-names: "Md Osman"
+  collection-title: "Proceedings of the 2nd ACM SIGSPATIAL International Workshop on Polar Data Science"
+  conference:
+    name: "PolDS '26"
+    city: Riverside
+    region: California
+    country: US
+    date-start: "2026-11-03"
+  year: 2026
+  publisher:
+    name: "Association for Computing Machinery"
+    city: "New York"
+    country: US
+references:
+  - type: data
+    title: "Data and results for: Supraglacial Lake Fate Is Knowable Long Before the Season Ends"
+    authors:
+      - family-names: Hossain
+        given-names: Emam
+      - family-names: Gani
+        given-names: "Md Osman"
+    year: 2026
+    doi: "10.5281/zenodo.22085303"

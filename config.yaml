@@ -1,0 +1,86 @@
+# Full-scale configuration for the truncated-sweep experiments.
+
+paths:
+  raw: data/raw
+  zenodo: data/external/zenodo
+  processed: data/processed
+  results: results
+  figures: figures
+
+years: [2018, 2019]
+
+# ---------------------------------------------------------------- labels
+# Integer codes are the source record's `final_label`; strings are the expert
+# `all_training.geojson` vocabulary. The two agree on 994 of the 1000 expert
+# lakes, which is the loader's join assertion.
+labels:
+  map:
+    0: refreeze
+    1: drain
+    2: drain_slow
+    3: buried
+  classes: [drain, drain_slow, refreeze, buried]
+  # final_label == 4 appears in S1_label/S2_label only (no consensus); never in final_label.
+
+# ---------------------------------------------------------------- horizons
+# A cutoff is a day of year: features may use days <= T only.
+# Melt season runs DOY 121-304; 365 is the retrospective reference that says
+# what the full season would have revealed.
+#
+# Every cutoff is the 1st or 15th of a month, except two endpoints: 304 (31 Oct)
+# closes the melt season and 365 is the full-year reference.
+#
+# 121 is a hard floor: the processed record starts there, and optical and
+# atmospheric variables have exactly zero variance across lakes before it. The
+# earliest drainage in the expert set falls on DOY 129 and the first percentile
+# of event dates on DOY 142, so a later start would discard the period in which
+# the earliest events occur.
+#
+# 2018 and 2019 are both non-leap years, so these DOYs map to identical calendar
+# dates in both -- the cross-year comparison is exact rather than off-by-one.
+horizons: [121, 135, 152, 166, 182, 196, 213, 227, 244, 258, 274, 288, 304, 365]
+
+# ---------------------------------------------------------------- splits
+seeds: [42, 43, 44, 45, 46]
+n_folds: 5
+
+# ---------------------------------------------------------------- features
+satellite_vars: [HV_lake, HV_out, HV_anom, S2_water, LS_water, pwater, t2m, S2_zenith, LS_zenith]
+carra_vars: [runoff, albedo, rh2m, sde_swe, sp]
+
+pipelines: [causal, published]
+
+# Leading-NaN priors.
+#
+# LOCF cannot fill before a lake's first observation, and back-filling would
+# read the future -- exactly what this paper objects to. So the pre-first-
+# observation stretch is filled with fixed constants that depend on NO data at
+# all: not a training mean, not a climatology, nothing estimated. Applied
+# identically to both pipelines, so the ablation measures leakage, not fill.
+fill_values:
+  HV_lake: -25.0     # dB, typical dry-snow/ice backscatter
+  HV_out: -25.0
+  HV_anom: 0.0       # no anomaly relative to surroundings
+  S2_water: 0.0      # no water observed yet
+  LS_water: 0.0
+  pwater: 0.0
+  t2m: 260.0         # K
+  S2_zenith: 90.0    # sun at the horizon: nothing observable
+  LS_zenith: 90.0
+
+# CARRA covers 1 May - 31 Oct only. Forward fill carries the last October value
+# through the winter tail; these constants cover Jan-Apr, which sits before
+# the earliest horizon (DOY 121) and so is never actually read.
+carra_fill_values:
+  runoff: 0.0        # kg m-2, no melt
+  albedo: 0.8        # fresh snow (already scaled from percent)
+  rh2m: 80.0         # %
+  sde_swe: 0.0       # kg m-2
+  sp: 100000.0       # Pa
+
+# ---------------------------------------------------------------- classifier
+classify:
+  num_kernels: 10000          # MiniROCKET kernels, over the nine channels jointly
+  alphas_log10: [-3, 3, 10]   # RidgeClassifierCV search grid
+  splits: [kfold, basin]      # kfold = the source record's 5 folds; basin = leave-one-basin-out
+  n_jobs: 12

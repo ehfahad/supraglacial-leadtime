@@ -1,0 +1,21 @@
+# Data is fetched by DOI, never committed. See data/README.md.
+data/raw/
+data/processed/
+data/external/
+
+# Environments and build artifacts
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+
+# Cluster output
+logs/
+*.out
+*.err
+
+# Intermediate shards, merged into results/*.parquet by the array jobs
+results/shards/

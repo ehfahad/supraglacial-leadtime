@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sgl-leadtime"
+version = "1.0.0"
+description = "Per-class lead time for end-of-season supraglacial lake outcome classification on the Greenland Ice Sheet"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Emam Hossain", email = "emamh1@umbc.edu" },
+    { name = "Md Osman Gani", email = "mogani@umbc.edu" },
+]
+keywords = ["supraglacial lakes", "Greenland Ice Sheet", "time series classification", "early classification", "temporal leakage"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Atmospheric Science",
+]
+
+# Versions are those the published results were produced with. sktime 1.1.0 is
+# pinned because MiniROCKET's kernel selection changed in later releases, which
+# shifts the transform and therefore the numbers.
+dependencies = [
+    "numpy>=1.26,<2",
+    "pandas>=2.1",
+    "scipy>=1.11",
+    "scikit-learn>=1.2,<1.3",
+    "sktime==1.1.0",
+    "xarray>=2023.6",
+    "netCDF4>=1.6",
+    "geopandas>=1.0",
+    "pyarrow>=14",
+    "pyyaml>=6",
+    "joblib>=1.2",
+    "matplotlib>=3.8",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4"]
+
+[project.urls]
+Repository = "https://github.com/hossainemam/supraglacial-leadtime"
+Dataset = "https://doi.org/10.5281/zenodo.22085303"
+
+[tool.setuptools.packages.find]
+where = ["src"]

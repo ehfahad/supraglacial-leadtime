@@ -1,0 +1,27 @@
+# Exact versions the published results were produced with, under Python 3.11.7.
+# Install with:  pip install -r requirements.txt && pip install -e .
+#
+# Prefer environment.yml if you do not already have a working GDAL/GEOS/PROJ
+# stack: geopandas, pyproj and netCDF4 bind to system C libraries that pip
+# cannot always resolve.
+
+numpy==1.26.4
+pandas==2.1.4
+scipy==1.11.4
+scikit-learn==1.2.2
+sktime==1.1.0
+numba==0.59.0
+xarray==2023.6.0
+netCDF4==1.7.4
+h5netcdf==1.8.1
+geopandas==1.1.4
+shapely==2.1.2
+pyproj==3.7.2
+pyogrio==0.13.0
+pyarrow==14.0.2
+PyYAML==6.0.1
+joblib==1.2.0
+matplotlib==3.8.0
+
+# Tests
+pytest==7.4.0

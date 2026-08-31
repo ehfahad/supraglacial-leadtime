@@ -1,0 +1,35 @@
+# Conda environment matching the one the published results were produced with.
+#
+#     conda env create -f environment.yml
+#     conda activate sgl-leadtime
+#     pip install -e .
+#
+# The geospatial and netCDF packages come from conda-forge because they bind to
+# GDAL, GEOS and PROJ; sktime is pinned through pip because the exact version
+# the results depend on is not carried in conda-forge.
+
+name: sgl-leadtime
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - numpy=1.26.4
+  - pandas=2.1.4
+  - scipy=1.11.4
+  - scikit-learn=1.2.2
+  - numba=0.59.0
+  - xarray=2023.6.0
+  - netcdf4=1.7.4
+  - h5netcdf=1.8.1
+  - geopandas=1.1.4
+  - shapely=2.1.2
+  - pyproj=3.7.2
+  - pyogrio=0.13.0
+  - pyarrow=14.0.2
+  - pyyaml=6.0.1
+  - joblib=1.2.0
+  - matplotlib=3.8.0
+  - pytest=7.4.0
+  - pip
+  - pip:
+      - sktime==1.1.0
