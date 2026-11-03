@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sgl-leadtime"
-version = "1.0.0"
+version = "0.1.0"
 description = "Per-class lead time for end-of-season supraglacial lake outcome classification on the Greenland Ice Sheet"
 readme = "README.md"
 requires-python = ">=3.10"
@@ -42,7 +42,7 @@ dependencies = [
 dev = ["pytest>=7.4"]
 
 [project.urls]
-Repository = "https://github.com/hossainemam/supraglacial-leadtime"
+Repository = "https://github.com/ehfahad/supraglacial-leadtime"
 Dataset = "https://doi.org/10.5281/zenodo.22085303"
 
 [tool.setuptools.packages.find]

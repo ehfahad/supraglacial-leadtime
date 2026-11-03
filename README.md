@@ -1,15 +1,15 @@
 # Supraglacial Lake Fate Is Knowable Long Before the Season Ends
 
-A supraglacial lake on the Greenland Ice Sheet ends its melt season by draining rapidly, draining slowly, refreezing, or being buried by snowfall. Existing satellite classifiers recover which one happened, but only after the season closes. This repository measures how much of a season each outcome actually needs: the input is truncated at 14 cutoffs from 1 May to 31 December, a classifier is retrained at each, and the earliest cutoff at which each class reaches a fixed per-class F1 target is recorded.
+A supraglacial lake on the Greenland Ice Sheet ends its melt season by draining rapidly, draining slowly, refreezing, or being buried by snowfall. Existing satellite classifiers recover which one happened, but only after the season closes. This repository measures how much of a season each outcome actually needs: the input is truncated at 14 cutoffs from May 1 to December 31, a classifier is retrained at each, and the earliest cutoff at which each class reaches a fixed per-class F1 target is recorded.
 
-The four outcomes resolve in a consistent order. Under random folds rapid drainage reaches the target on 15 July and slow drainage on 1 August, 92 and 75 days before a full-season pipeline can be computed at all, with buried and refreeze following at 44 and 30 days.
+The four outcomes resolve in a consistent order. Under random folds rapid drainage reaches the target on July 15 and slow drainage on August 1, 92 and 75 days before a full-season pipeline can be computed at all, with buried and refreeze following at 44 and 30 days.
 
 **Data and results:** <https://doi.org/10.5281/zenodo.22085303>
 
 ## Install
 
 ```bash
-git clone https://github.com/hossainemam/supraglacial-leadtime
+git clone https://github.com/ehfahad/supraglacial-leadtime
 cd supraglacial-leadtime
 ```
 
@@ -36,7 +36,7 @@ pip install -e .
 pip install -e ".[dev]"
 ```
 
-Python 3.10 or later. The pipeline is CPU-only by design: MiniROCKET is built for CPU speed and the classifier is a closed-form ridge solve, so no GPU is involved at any stage and none is missing.
+Python 3.10 or later. The pipeline is CPU-only by design: MiniROCKET is built for CPU speed and the classifier is a closed-form ridge solve, so no GPU is needed at any stage.
 
 `sktime` is pinned to 1.1.0 in all three, because MiniROCKET's kernel selection changed in later releases, which shifts the transform and therefore the numbers.
 
@@ -148,7 +148,7 @@ Contains modified Copernicus Climate Change Service information 2026. Neither th
 
 Cite the paper for the method and result, and the Zenodo deposit for the data.
 
-**The paper.** Replace the arXiv identifier with the ACM DOI once it is assigned:
+**The paper.** Until the ACM DOI is assigned, cite the arXiv version:
 
 ```bibtex
 @inproceedings{hossain2026supraglacial,
@@ -160,9 +160,9 @@ Cite the paper for the method and result, and the Zenodo deposit for the data.
   location  = {Riverside, CA, USA},
   publisher = {Association for Computing Machinery},
   address   = {New York, NY, USA},
-  eprint    = {2609.XXXXX},
+  eprint    = {2608.30113},
   archivePrefix = {arXiv},
-  url       = {https://arxiv.org/abs/2609.XXXXX}
+  url       = {https://arxiv.org/abs/2608.30113}
 }
 ```
 

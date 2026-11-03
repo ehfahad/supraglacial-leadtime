@@ -12,7 +12,7 @@ authors:
     affiliation: "University of Maryland, Baltimore County"
     email: mogani@umbc.edu
 license: MIT
-repository-code: "https://github.com/hossainemam/supraglacial-leadtime"
+repository-code: "https://github.com/ehfahad/supraglacial-leadtime"
 preferred-citation:
   type: conference-paper
   title: "Supraglacial Lake Fate Is Knowable Long Before the Season Ends"
@@ -29,6 +29,11 @@ preferred-citation:
     country: US
     date-start: "2026-11-03"
   year: 2026
+  url: "https://arxiv.org/abs/2608.30113"
+  identifiers:
+    - type: other
+      value: "arXiv:2608.30113"
+      description: "arXiv preprint"
   publisher:
     name: "Association for Computing Machinery"
     city: "New York"

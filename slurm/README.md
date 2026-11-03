@@ -7,7 +7,7 @@ scripts call:
 ```bash
 make sweep      # the truncated sweep, all 14 cutoffs
 make arms       # ROCKET, catch22, TEASER and the majority floor
-make figures    # every figure from the result tables
+make figures    # five of the six figures, from the result tables
 ```
 
 The array scripts exist only because the sweep is 3,080 fits and the cluster can
